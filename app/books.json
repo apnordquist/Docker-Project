@@ -1,0 +1,16 @@
+[
+    {
+        "id" : 453,
+        "title": "Dracula",
+        "author": "Bram Stoker",
+        "genre": "horror",
+        "pages": 319
+    },
+    {
+        "id" : 345,
+        "title": "Frankenstein",
+        "author": "Mary Shelley",
+        "genre": "horror",
+        "pages": 580
+    }
+]
