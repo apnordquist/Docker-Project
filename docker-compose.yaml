@@ -1,0 +1,43 @@
+
+services:
+  frontend:
+    build: ./getreading
+    ports:
+      - "3000:3000"
+    container_name: getreading
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  backend:
+    build: ./api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  mongo:
+    ports:
+        - '27017:27017'
+    container_name: getreading-mongo
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app-network
+    restart: always
+    image: mongo
+
+volumes:
+  mongodb_data:
+
+networks:
+  app-network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.enable_tx_rate_limiting: "true"
+      com.docker.network.bridge.tx_rate_limit: "1mbit"
